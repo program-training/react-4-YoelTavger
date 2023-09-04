@@ -1,28 +1,27 @@
-import React, { createContext, useState } from "react";
-
-interface TextData {
-  text: string;
-}
+import { createContext, useContext, useState } from 'react';
 
 interface TextContextType {
-  text: TextData;
-  setText: React.Dispatch<React.SetStateAction<TextData>>;
+  state: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface TextContextProviderProps {
-  children: React.ReactNode;
-}
+const TextContext = createContext<TextContextType | undefined>(undefined);
 
-export const TextContext = createContext<TextContextType | null>(null);
+export const useTextContext = () => {
+  const context = useContext(TextContext);
+  if (!context) {
+    throw new Error('useTextContext must be used within a TextContextProvider');
+  }
+  return context;
+};
 
-const TextContextProvider: React.FC<TextContextProviderProps> = (props) => {
-  const [text, setText] = useState<TextData>({ text: "Hello World" });
+export const TextContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, setState] = useState<string>('hello world');
 
   return (
-    <TextContext.Provider value={{ text, setText }}>
-      {props.children}
+    <TextContext.Provider value={{ state, setState }}>
+      {children}
     </TextContext.Provider>
   );
 };
 
-export default TextContextProvider;
