@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTextContext } from '../contexts/TextContext';
+import { useTextContext } from '../../contexts/TextContext';
 
 const Father: React.FC = () => {
   const { setState } = useTextContext();

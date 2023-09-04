@@ -1,4 +1,4 @@
-import { useTextContext } from "../contexts/TextContext";
+import { useTextContext } from "../../contexts/TextContext";
 
 const Child: React.FC = () => {
   const { state } = useTextContext();

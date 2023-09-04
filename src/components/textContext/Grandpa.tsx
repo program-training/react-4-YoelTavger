@@ -1,4 +1,4 @@
-import { TextContextProvider } from "../contexts/TextContext";
+import { TextContextProvider } from "../../contexts/TextContext";
 import Father from "./Father";
 import Child from "./Child";
 
